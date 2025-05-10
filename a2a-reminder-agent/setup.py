@@ -1,0 +1,32 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="a2a-reminder-agent",
+    version="0.1.0",
+    packages=find_packages(),
+    install_requires=[
+        "langchain>=0.3.25",
+        "langgraph>=0.4.3",
+        "apscheduler>=3.10.4",
+        "python-dotenv>=1.0.0",
+        "openai>=1.6.1",
+        "langchain_openai>=0.0.8",
+        "requests>=2.31.0",
+        "fastapi>=0.103.2",
+        "uvicorn>=0.23.2",
+        "starlette>=0.27.0",
+        "pydantic>=2.7.4",
+        "httpx>=0.27.0",
+        "click>=8.1.8",
+        "cryptography>=42.0.0",
+        "httpx-sse>=0.4.0",
+        "jwcrypto>=1.5.6",
+        "pyjwt>=2.10.1",
+        "sse-starlette>=2.2.1",
+        "typing-extensions>=4.12.2",
+        "mcp>=1.1.1",
+        "mcp-datetime>=0.1.4",
+        "pytz>=2024.1",
+    ],
+    python_requires=">=3.10,<3.13",
+)
