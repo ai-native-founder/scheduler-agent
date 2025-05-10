@@ -6,16 +6,26 @@ import os
 
 import click
 
-# Use relative imports for when running as a module
+# Import approach that works for direct running
+import sys
+import os
+
+# Add the parent directory to the Python path
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+# Now we can import regardless of how the script is run
 try:
+    # Try relative imports first (when running as a module)
     from .agent import ReminderAgent
     from .task_manager import AgentTaskManager
     from .scheduler import reminder_scheduler
-# Fallback to absolute imports when running as script
 except ImportError:
-    from agents.reminder.agent import ReminderAgent
-    from agents.reminder.task_manager import AgentTaskManager 
-    from agents.reminder.scheduler import reminder_scheduler
+    # Fallback to direct imports from the current directory
+    from agent import ReminderAgent
+    from task_manager import AgentTaskManager
+    from scheduler import reminder_scheduler
 from common.server import A2AServer
 from common.types import (
     AgentCapabilities,

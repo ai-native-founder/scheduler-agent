@@ -22,7 +22,16 @@ from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
 
 # Import the scheduler implementation
-from .scheduler import reminder_scheduler
+import sys
+import os as _os  # Import with alias to avoid conflicts
+
+# Fix imports when run as a script
+try:
+    # Try relative imports first (when running as a module)
+    from .scheduler import reminder_scheduler
+except ImportError:
+    # Fallback to direct imports from the current directory
+    from scheduler import reminder_scheduler
 
 # Create memory saver for LangGraph checkpointing
 memory = MemorySaver()

@@ -7,7 +7,25 @@ import traceback
 
 from collections.abc import AsyncIterable
 
-from agents.reminder.agent import ReminderAgent
+import sys
+import os
+
+# Add parent directory to Python path if not already there
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+# Try different import approaches
+try:
+    # Try relative import first
+    from .agent import ReminderAgent
+except ImportError:
+    try:
+        # Try direct import
+        from agent import ReminderAgent
+    except ImportError:
+        # Last resort: try absolute import with updated path
+        from agents.reminder.agent import ReminderAgent
 from common.server import utils
 from common.server.task_manager import InMemoryTaskManager
 from common.types import (
